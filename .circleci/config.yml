@@ -5,7 +5,8 @@ workflows:
   test-env-vars:
     jobs:
       - build
-      - list_file
+         requires:
+           - list_file
 
 jobs:
   build:
