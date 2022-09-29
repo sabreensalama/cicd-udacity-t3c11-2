@@ -15,4 +15,5 @@ jobs:
       - run:
           name: "echo an env var that is part of our project"
           command: |
-            echo $my_env-$CIRCLE_WORKFLOW_ID
+            touch test-file
+            ls
