@@ -4,12 +4,13 @@ version: 2.1
 workflows:
   test-env-vars:
     jobs:
-      - build
+      - create_file
+      - list_file
          requires:
-           - list_file
+           - create_file
 
 jobs:
-  build:
+  create_file:
     docker:
       - image: cimg/base:2020.01
     steps:
