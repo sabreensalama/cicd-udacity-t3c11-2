@@ -5,6 +5,7 @@ workflows:
   test-env-vars:
     jobs:
       - build
+      - list_file
 
 jobs:
   build:
@@ -17,3 +18,8 @@ jobs:
           command: |
             touch test-file
             ls
+  list_file:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: cat test-file
