@@ -5,7 +5,7 @@ workflows:
   test-env-vars:
     jobs:
       - create_file
-      - list_file
+      - list_file:
          requires:
            - create_file
 
