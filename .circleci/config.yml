@@ -1,27 +1,27 @@
-# env variables
+# sharing files
 version: 2.1
 
-workflows:
-  test-env-vars:
-    jobs:
-      - create_file
-      - list_file:
-         requires:
-           - create_file
-
 jobs:
-  create_file:
-    docker:
-      - image: cimg/base:2020.01
-    steps:
-      - checkout
-      - run:
-          name: "echo an env var that is part of our project"
-          command: |
-            touch test-file
-            ls
-  list_file:
+  save_hello_world_output:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: cat test-file
+      - run: echo "hello world" > ~/output.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - output.txt
+
+  print_output_file:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: cat ~/output.txt
+
+workflows:
+  my_workflow:
+    jobs:
+      - save_hello_world_output
+      - print_output_file:
+          requires:
+            - save_hello_world_output
