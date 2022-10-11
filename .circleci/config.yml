@@ -1,29 +1,21 @@
-# sharing files
 version: 2.1
 
-jobs:
-  save_hello_world_output:
-    docker:
-      - image: circleci/node:13.8.0
+commands:
+  print_command:
     steps:
-      - run: echo "hello world" > ~/output.txt
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - output.txt
+      - run: 
+          name: on error
+          command: echo "Hello this is command"
 
-  print_output_file:
+
+jobs:
+  my_job:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: cat ~/output.txt
-      - attach_workspace:
-          at: ~/
+    - print_command
 
 workflows:
   my_workflow:
     jobs:
-      - save_hello_world_output
-      - print_output_file:
-          requires:
-            - save_hello_world_output
+      - my_job
