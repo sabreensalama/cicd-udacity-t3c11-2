@@ -1,9 +1,3 @@
-<<<<<<< HEAD
 # cicd-udacity
-<<<<<<< HEAD
+# test push commits from one branch to another
 
-=======
-=======
-# cicd-udacity-t3c11-2
->>>>>>> 8d81a46... Update README.md
->>>>>>> d869e6f... create new branch
